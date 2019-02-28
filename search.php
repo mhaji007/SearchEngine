@@ -95,14 +95,15 @@ include("classes/SiteResultsProvider.php");
 
 
 
-		<div class="mainResultSection">
+		<div class="mainResultsSection">
 
 			<?php
 			$resultsProvider = new SiteResultsProvider($con);
 			
 
-			echo $resultsProvider->getNumResults($term);
+			$numResults = $resultsProvider->getNumResults($term);
 
+			echo "<p class='resultsCount'>$numResults results found</p>";
 			?>
 		</div>
 

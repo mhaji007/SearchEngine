@@ -236,6 +236,6 @@ function followLinks($url) {
 	}
 }
 
-$startUrl = "https://alibaba.com";
+$startUrl = "https://www.bbc.com";
 followLinks($startUrl);
 ?>

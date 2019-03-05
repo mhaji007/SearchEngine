@@ -8,9 +8,10 @@ $alreadyCrawled = array();
 // array to hold links still need to be crawled
 $crawling = array();
 
-// array to hold images aleady visited
+// array to hold images aleady found
 $alreadyFoundImages = array();
 
+// function to check for dupilcates in the database
 function linkExists($url) {
 	global $con;
 
@@ -19,25 +20,33 @@ function linkExists($url) {
 	
 	$query->execute();
 
+	// returns the number of rows the above query that is not zero 
 	return $query->rowCount() != 0;
 
 
 }
 
+// function to insert links into the database
 function insertLink($url, $title, $description, $keywords) {
+	// global variable for referencing the con object in the config file
 	global $con;
 
+	// insert into the database table columns. We don;t need to insert into ID and clicks columns
 	$query = $con->prepare("INSERT INTO sites(url, title, description, keywords)  VALUES(:url, :title, :description, :keywords)");
+
+	// bind placeholders to variables
 	$query->bindParam(":url", $url);
 	$query->bindParam(":title", $title);
 	$query->bindParam(":description", $description);
 	$query->bindParam(":keywords", $keywords);
 
+	// returns true if all ok, false otherwise
 	return $query->execute();
 
 
 }
 
+// function to insert images into the database
 function insertImage($url, $src, $alt, $title) {
 	global $con;
 
@@ -152,21 +161,23 @@ function getDetails($url) {
 	// for testing
 	//echo "URL: $url, Title: $title, Description: $description, Keywords: $keywords<br>";
     
+    // testing for duplicates before inserting links
 	if(linkExists($url)) {
 		echo "$url already exists<br>";
 	}
 
 	else if(insertLink($url, $title, $description, $keywords)) {
-		echo "SUCCESS: $url";
+		echo "SUCCESS: $url<br>";
 
 	}
 	else {
 		echo"ERROR: Failed to insert $url<br>";
 	}
 
-
+	// testing the insertLink function 
 	//insertLink($url, $title, $description, $keywords);
 
+	// array of images derived from site's HTML
 	$imageArray =  $parser->getImages();
 	foreach ($imageArray as $image) {
 
@@ -174,19 +185,22 @@ function getDetails($url) {
 		$alt = $image->getAttribute("alt");
 		$title = $image->getAttribute("title");
 
+		// ignore images that don't have both title ans alt tags
 		if(!$title && !$alt) {
 			continue;
 		}
 
+		// converts relative links to absolute links
 		$src = createLink($src, $url);
 
 		if(!in_array($src, $alreadyFoundImages)) {
 			$alreadyFoundImages[] = $src;
 
+			// insert images
 			insertImage($url, $src, $alt, $title);
 		}
 
-		// insert images
+		
 
 
 
@@ -235,7 +249,9 @@ function followLinks($url) {
 		$href = createLink($href, $url);
 		// here is where the recursive visting of links is accomplished
 		if (!in_array($href, $alreadyCrawled)) {
-			$alreadyCrawled[] = $href; // put it at the next item same as array_push($alreadyCrawled, $href);
+			// put it at the next item same as array_push($alreadyCrawled, $href);
+			$alreadyCrawled[] = $href; 
+
 			$crawling[] = $href;
 
 			// insert href into the database
@@ -259,6 +275,6 @@ function followLinks($url) {
 	}
 }
 
-$startUrl = "http://www.apple.com";
+$startUrl = "http://www.bbc.com";
 followLinks($startUrl);
 ?>

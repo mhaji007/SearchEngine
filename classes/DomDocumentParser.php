@@ -4,7 +4,7 @@ class DomDocumentParser {
 	// variable to save the HTML contents so all functions on this page have access to HTML contents
 	private $doc;
 
-	// This function receives a url and makes a request to go to mentioned url. It passes the contents of the website to DOM document object. The doc variable contains the HTML contents of the website.
+	// this function receives a url and makes a request to go to mentioned url. It passes the contents of the website to DOM document object. The doc variable contains the HTML contents of the website.
 	public function __construct($url) {
 
 		// array to specify the options when we request the webpage. Options are method to retireve the data and a header and a user-agent. User-Agent is how a website knows who visited the website. 
@@ -28,15 +28,15 @@ class DomDocumentParser {
 	public function getlinks() {
 		return $this->doc->getElementsByTagName("a");
 	}
-
+	// function to get the titles of the websites
 	public function getTitleTags() {
 		return $this->doc->getElementsByTagName("title");
 	}
-
+	// function to get meta tags included in html of the websites
 	public function getMetaTags() {
 		return $this->doc->getElementsByTagName("meta");
 	}
-
+	// function to get the images on the websites
 	public function getImages() {
 		return $this->doc->getElementsByTagName("img");
 	}

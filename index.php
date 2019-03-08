@@ -3,7 +3,7 @@
 <head>
 	<title> Welcome to Inquire</title>
 
-  	<meta charset="UTF-8">
+  	
   	<meta name="description" content="Search the web for sites and images">
   	<meta name="keywords" content="Search engine, Inquire, HTML, CSS, XML, JavaScript, websites">
   	<meta name="author" content="Mehdi Hajikhani">
@@ -20,7 +20,7 @@
 
 			<div class = "logoContainer">
 				
-				<img src="assets/images/inquire.png ">
+				<img src="assets/images/inquire.png " title="Ask Away!" alt="Site Logo">
 
 			</div>
 

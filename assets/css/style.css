@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 * {
 	font-family: arial, sans-serif;
 	color: #545454;
@@ -209,6 +211,40 @@ body {
 }
 
 
+.paginationContainer {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 25px;
+}
+
+.pageButtons {
+	display: flex;
+}
+
+.pageNumberContainer img {
+	height: 37px;
+}
 
 
 
+/*
+
+.paginationContainer {
+
+	text-align: center;
+}
+
+.pageButtons {
+
+	display: inline-flex;
+
+}
+
+.pageNumberContainer img {
+
+	height: 37px;
+
+
+}
+
+*/

@@ -2,6 +2,9 @@
 include("config.php");
 include("classes/DomDocumentParser.php");
 
+//increase the maximum execution time 
+ini_set('max_execution_time', 300);
+
 // array to  contain all the links already visited
 $alreadyCrawled = array();
 
@@ -227,11 +230,16 @@ function followLinks($url) {
 		// ignore the hrefs that have # to use the behavior of the links (they are not real links)
 		if(strpos($href,"#") !== false) {
 			continue;
+		
+		
 		}
 
+	/*
 		if(strpos(strtoupper($href),"FACEBOOK") or strpos(strtoupper($href),"TWITTER")  or strpos(strtoupper($href),"LINKEDIN" ) or strpos(strtoupper($href),"PLUS.GOOGLE") ) {
 			continue;
 		}
+
+	*/
 
 	/*
 		if(strlen($href) == 1) {
@@ -275,6 +283,6 @@ function followLinks($url) {
 	}
 }
 
-$startUrl = "http://www.bbc.com";
+$startUrl = "http://www.dailymail.co.uk";
 followLinks($startUrl);
 ?>

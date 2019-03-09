@@ -227,8 +227,8 @@ body {
 
 
 
-/*
 
+/*
 .paginationContainer {
 
 	text-align: center;
@@ -245,6 +245,19 @@ body {
 	height: 37px;
 
 
+
 }
 
 */
+
+.pageNumebrContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-decoration: none;
+}
+
+.pageNumber {
+	color:#000;
+	font-size: 13px;
+}

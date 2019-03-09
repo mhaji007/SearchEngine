@@ -1,4 +1,3 @@
-
 <?php
 include("config.php");
 include("classes/SiteResultsProvider.php");
@@ -35,7 +34,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
 				<div class="logoContainer">
 					<a href="index.php">
-						<img src="assets/images/inquire.png">
+						<img src="assets/images/doodleLogo.png">
 					</a>
 				</div>
 
@@ -119,12 +118,35 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 					<img src="assets/images/pageStart.png">
 				</div>
 
+				<?php
+
+
+				$currentPage = 1;
+				$pagesLeft = 10;
+
+				while($pagesLeft != 0) {
+
+					echo "<div class='pageNumberContainer'>
+							<img src='assets/images/page.png'>
+							<span class='pageNumber'>$currentPage</span>
+						</div>";
+
+					$currentPage++;
+					$pagesLeft--;
+
+				}
+
+
+
+
+
+				?>
 
 				<div class="pageNumberContainer">
 					<img src="assets/images/pageEnd.png">
 				</div>
 
-				
+
 
 			</div>
 

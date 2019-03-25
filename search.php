@@ -92,7 +92,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
 			<?php
 			$resultsProvider = new SiteResultsProvider($con);
-			$pageLimit = 20;
+			$pageSize = 20;
 
 			$numResults = $resultsProvider->getNumResults($term);
 
@@ -100,7 +100,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
 
 
-			echo $resultsProvider->getResultsHtml($page, $pageLimit, $term);
+			echo $resultsProvider->getResultsHtml($page, $pageSize, $term);
 			?>
 
 
@@ -120,9 +120,15 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
 				<?php
 
+				$pagesToShow=10;
+				$numPages= ceil($numResults / $pageSize);
+				// $currentPage = 1;
+				$pagesLeft = min($pagesToShow, $numPages);
+				$currentPage = $page - floor($pagesToShow/2);
 
-				$currentPage = 1;
-				$pagesLeft = 10;
+				if($currentPage<1) {
+					$currentPage = 1;
+				}
 
 				while($pagesLeft != 0) {
 

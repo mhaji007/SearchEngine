@@ -4,8 +4,15 @@ $(document).ready(function(){
 		// console.log("I was clicked");
 
 		//get the value of the href
+		var id = $(this).attr("data-linkId");
 		var url = $(this).attr("href");
-		console.log(url);
+		//console.log(id);
+
+		if(!id) {
+			alert("data-linkId attribute not found");
+		}
+
+		increaseLinkClicks(id, url);
 
 
 

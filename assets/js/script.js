@@ -15,6 +15,14 @@ $(document).ready(function() {
 		//return false;
 	});
 
+	var grid = $(".imageResults");
+
+	grid.masonry({
+		itemSelector: ".gridItem",
+		columnWidth: 200,
+		gutter: 5,
+	});
+
 
 });
 

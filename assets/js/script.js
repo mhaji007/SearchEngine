@@ -21,10 +21,28 @@ $(document).ready(function() {
 		itemSelector: ".gridItem",
 		columnWidth: 200,
 		gutter: 5,
+		isInitLayout: false
 	});
 
 
 });
+
+function loadImage(src, className) {
+	//console.log(src);
+	var image = $("<img>");
+
+	image.on("load", function() {
+		$("." + className + " a").append(image);
+
+	});
+
+	image.on("error", function() {
+
+
+	});
+
+	image.attr("src", src);
+}
 
 
 function increaseLinkClicks(linkId, url) {

@@ -1,6 +1,7 @@
 <?php
 include("config.php");
 include("classes/SiteResultsProvider.php");
+include("classes/ImageResultsProvider.php");
 
 if(isset($_GET["term"])) {
 	$term = $_GET["term"];
@@ -94,8 +95,16 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 		<div class="mainResultsSection">
 
 			<?php
+			if($type == "sites") {
 			$resultsProvider = new SiteResultsProvider($con);
 			$pageSize = 20;
+			}
+			else {
+			$resultsProvider = new ImageResultsProvider($con);
+			$pageSize = 30;
+			}
+
+
 
 			$numResults = $resultsProvider->getNumResults($term);
 

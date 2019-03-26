@@ -45,7 +45,17 @@ $(document).ready(function() {
         return caption;
     
 
+    },
+    	afterShow : function( instance, item ) {
+
+    		increaseImageClicks(item.src);
+
+
+       
+
     }
+
+
 
 
 
@@ -92,6 +102,19 @@ function increaseLinkClicks(linkId, url) {
 		}
 
 		window.location.href = url;
+
+	});
+
+}
+
+function increaseImageClicks(imageUrl) {
+
+	$.post("ajax/updateImageCount.php", {imageUrl: imageUrl})
+	.done(function(result) {
+		if(result != "") {
+			//alert(result);
+			return;
+		}
 
 	});
 
